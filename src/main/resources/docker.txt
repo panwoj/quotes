@@ -1,0 +1,2 @@
+docker build --build-arg JAR_FILE=build/libs/quotes-0.0.1-SNAPSHOT.jar -t panwoj/quotes-app .
+docker run -p 8080:8080 panwoj/quotes-app
