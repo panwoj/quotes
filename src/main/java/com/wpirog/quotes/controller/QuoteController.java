@@ -4,6 +4,7 @@ import com.wpirog.quotes.model.Quote;
 import com.wpirog.quotes.service.QuoteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,5 +24,10 @@ public class QuoteController {
     @GetMapping("/health")
     public String health() {
         return "OK";
+    }
+
+    @GetMapping
+    public Quote getQuote(@RequestParam String id) {
+        return service.getQuoteById(id);
     }
 }

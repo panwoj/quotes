@@ -20,4 +20,8 @@ public class QuoteService {
     public Quote getStandardQuote() {
         return repository.findById((long) random.nextInt(MAX_QUOTES) + 1).orElse(null);
     }
+
+    public Quote getQuoteById(String id) {
+        return repository.findById(Long.valueOf(id)).orElse(null);
+    }
 }

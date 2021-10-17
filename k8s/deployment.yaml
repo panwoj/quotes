@@ -5,7 +5,7 @@ metadata:
   labels:
     app: quotes
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: quotes
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: quotes
-          image: panwoj/quotes:1.0
+          image: panwoj/quotes:2.0
           ports:
             - containerPort: 8081
           readinessProbe:
@@ -25,3 +25,6 @@ spec:
               port: 8081
             initialDelaySeconds: 10
             periodSeconds: 3
+          envFrom:
+            - configMapRef:
+                name: quotes-config
