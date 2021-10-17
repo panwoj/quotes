@@ -19,4 +19,9 @@ public class QuoteController {
     public Quote getRandom() {
         return service.getStandardQuote();
     }
+    
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
+    }
 }
