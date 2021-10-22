@@ -22,6 +22,9 @@ public class QuoteService {
     }
 
     public Quote getQuoteById(String id) {
+        if (id == null) {
+            return null;
+        }
         return repository.findById(Long.valueOf(id)).orElse(null);
     }
 }

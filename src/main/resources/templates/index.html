@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <header>
+        <title>Quote Application</title>
+    </header>
+    <body>
+        <tr th:if="${quote == null}">
+            <div>No quote</div>
+        </tr>
+        <tr th:if="${quote != null}">
+            <div th:text="${quote}"></div>
+        </tr>
+
+        <form method="get" action="/quote" class="form-actions">
+            <input type="text" name="id">
+            <input type="submit" value="Quote"/>
+        </form>
+        <form method="get" action="/quote/random" class="form-actions">
+            <input type="submit" value="Random"/>
+        </form>
+    </body>
+</html>
