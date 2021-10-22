@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: quotes-app
   labels:
     app: quotes-app
+  name: quotes-app
+  namespace: default
 spec:
-  replicas: 4
   selector:
     matchLabels:
       app: quotes-app
+  replicas: 4
   template:
     metadata:
+      name: quotes-app
       labels:
         app: quotes-app
     spec:
       containers:
         - name: quotes-app
-          image: panwoj/quotes-app:7.0
           env:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
@@ -31,7 +32,7 @@ spec:
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_db
             - name: POSTGRES_HOST
               valueFrom:
@@ -41,11 +42,12 @@ spec:
             - name: POSTGRES_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_port
-          readinessProbe:
-            httpGet:
-              path: /quote/health
-              port: 8080
-            initialDelaySeconds: 20
-            periodSeconds: 3
+          image: panwoj/quotes-app:9.0
+#          readinessProbe:
+#            httpGet:
+#              path: /quote/health
+#              port: 8080
+#            initialDelaySeconds: 20
+#            periodSeconds: 3

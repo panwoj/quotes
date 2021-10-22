@@ -7,5 +7,5 @@ metadata:
     app: quotes
 data:
   postgres_user: kodilla
-  postgres_db: memory-db
+  postgres_db: quotes-db
   postgres_port: '5432'

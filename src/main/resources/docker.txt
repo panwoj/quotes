@@ -1,3 +1,15 @@
-docker build --build-arg JAR_FILE=build/libs/quotes-0.0.1-SNAPSHOT.jar -t panwoj/quotes-app:7.0 .
+docker build --build-arg JAR_FILE=build/libs/quotes-0.0.1-SNAPSHOT.jar -t panwoj/quotes-app:9.0 .
 docker run --name quotes3.0 --network moja_siec -p 8080:8080 panwoj/quotes-app:3.0
 docker exec -it quotes3.0 bash
+
+
+
+kubectl apply -f k8s/quotes-postgres-secret.yaml
+kubectl apply -f k8s/quotes-postgres-configmap.yaml
+kubectl apply -f k8s/quotes-postgres.yaml
+
+
+kubectl get svc quotes-postgres -o jsonpath="{.spec.clusterIP}"
+kubectl create configmap quotes-hostname-config --from-literal=postgres_host=
+kubectl apply -f k8s/quotes-deployment.yaml
+kubectl apply -f k8s/service.yaml

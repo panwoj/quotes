@@ -42,7 +42,7 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
@@ -52,12 +52,12 @@ spec:
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_db
             - name: POSTGRES_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: quotes-postgres-config
+                  name: quotes-config
                   key: postgres_port
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
